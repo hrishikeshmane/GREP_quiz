@@ -1,24 +1,24 @@
 (function () {
     var questions = [{
-        question: "What is 2*5?",
-        choices: [2, 5, 10, 15, 20],
+        question: "austere",
+        choices: ['smart', 'wet', 'harsh', 'tall', 'standing'],
         correctAnswer: 2
     }, {
-        question: "What is 3*6?",
-        choices: [3, 6, 9, 12, 18],
+        question: "Natty",
+        choices: ['remove', 'formal', 'correct', 'rarely', 'neatly dressed'],
         correctAnswer: 4
     }, {
-        question: "What is 8*9?",
-        choices: [72, 99, 108, 134, 156],
+        question: "Doff",
+        choices: ['take off', 'choices', 'choose', 'fancy', 'rude'],
         correctAnswer: 0
     }, {
-        question: "What is 1*7?",
-        choices: [4, 5, 6, 7, 8],
+        question: "don",
+        choices: ['identify', 'rude', 'stylish', 'put on', 'left'],
         correctAnswer: 3
     }, {
-        question: "What is 8*8?",
-        choices: [20, 30, 40, 50, 64],
-        correctAnswer: 4
+        question: "prim",
+        choices: ['formal', 'last', 'respect', 'restless', 'stylish'],
+        correctAnswer: 0
     }];
 
     var questionCounter = 0; //Tracks question number

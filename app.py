@@ -1,9 +1,23 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
+import MySQLdb
+#from flask_mysqldb import MySQL
+#import MySQLdb.cursors
+
+
 
 app = Flask(__name__)
 app.secret_key = 'some secret key'
 
+db = MySQLdb.connect(host="localhost" ,user="root" ,passwd="root", db='grep')
+cursor = db.cursor()
+#cursor.execute("SELECT * FROM login")
+#numrows = cursor.rowcount
+
+#for x in range(0, numrows):
+#    row = cursor.fetchone()
 
 @app.route('/')
 def home():
@@ -15,12 +29,34 @@ def home():
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-    if request.form['password'] == 'secret' and request.form['username'] == 'admin':
+    u=request.form['username']
+    querry="SELECT * FROM login where username='%s' " %(u,)
+    cursor.execute(querry)
+    row = cursor.fetchone()
+    #print(row)
+    if request.form['password'] == row[1]:
         session['logged_in'] = True
     else:
         flash('wrong password!')
     return home()
 
+@app.route('/reg')
+def reg():
+    return render_template('register.html')
+
+@app.route('/submit', methods=['POST'])
+def do_register():
+    u=request.form['username']
+    p=request.form['password']
+    querry="insert into login values('%s','%s') " %(u,p,)
+    cursor.execute(querry)
+    row1 = cursor.fetchone()
+    db.commit()
+    if row1==1:
+        flash('registed')
+    else:
+        flash(' not registed')
+    return home()
 
 @app.route("/logout")
 def logout():
